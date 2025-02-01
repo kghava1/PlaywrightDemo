@@ -14,8 +14,8 @@ pipeline
         stage("Regression Automation Test"){
             steps{
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-                    git branch: 'main', url: 'https://github.com/kghava1/PlaywrightDemo.git'
-                    sh 'mvn clean test -Dsurefire.suitXmlFiles=src/test/resources/testRunner/testng_regression.xml'
+                    git 'https://github.com/kghava1/PlaywrightDemo.git'
+                    sh 'mvn clean test'
                 }
             }
         }
