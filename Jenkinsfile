@@ -1,25 +1,33 @@
-pipeline
-{
+pipeline {
     agent any
 
-    tools{
-        maven 'maven'
+    tools {
+        maven 'maven'  // Ensure Maven is installed in Jenkins
     }
+
     stages {
-            stage('Checkout Code') {
-                steps {
-                    script {
-                        deleteDir() // Clean workspace before cloning
-                      }
-                }
-                steps {
-                    git branch: 'main', url: 'https://github.com/kghava1/PlaywrightDemo.git'
-                }
+        stage('Cleanup Workspace') {
+            steps {
+                deleteDir()  // Clean workspace before every build
             }
-            stage("Run Tests") {
-                steps {
-                    sh 'mvn clean test'
-                }
+        }
+
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/kghava1/PlaywrightDemo.git'  // Checkout code from GitHub
             }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh 'mvn clean test'  // Run Maven tests
+            }
+        }
+
+        stage('Archive Test Results') {
+            steps {
+                archiveArtifacts artifacts: 'target/surefire-reports/*.xml', fingerprint: true  // Archive test results
+            }
+        }
     }
 }
