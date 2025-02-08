@@ -19,7 +19,7 @@ pipeline
                 }
             }
         }
-        /* stage("Publish Extent Report"){
+        stage("Publish Extent Report"){
             steps{
                 publishHTML([allowMissing: false,
                              alwaysLinkToLastBuild: false,
@@ -29,6 +29,6 @@ pipeline
                              reportName: 'HTML Extent Report',
                              reportTitles: ''])
             }
-        } */
+        } 
     }
 }
