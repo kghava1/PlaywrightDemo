@@ -14,7 +14,7 @@ pipeline
         stage("Regression Automation Test"){
             steps{
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-                    git branch: 'main', url: 'https://github.com/kghava1/PlaywrightDemo.git'
+                    git branch: 'master', url: 'https://github.com/kghava1/PlaywrightDemo.git'
                     sh 'mvn clean test'
                 }
             }
@@ -29,6 +29,6 @@ pipeline
                              reportName: 'HTML Extent Report',
                              reportTitles: ''])
             }
-        } 
+        }
     }
 }
