@@ -11,6 +11,7 @@ pipeline
                     script {
                         deleteDir() // Clean workspace before cloning
                       }
+                }
                 steps {
                     git branch: 'main', url: 'https://github.com/kghava1/PlaywrightDemo.git'
                 }
